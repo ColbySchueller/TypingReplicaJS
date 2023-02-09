@@ -1,0 +1,26 @@
+.btn{
+  padding: 0.4rem;
+  margin-top: 100px;
+  z-index: 1;
+}
+.typing-input{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right:0 ;
+  left:0 ;
+  background-color: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+label{
+  display: inline;
+  font-size: 1.4rem;
+  color:rgb(163, 163, 163);
+  white-space: pre;
+
+}
+.placeholder-div{
+  display: inline-flex;
+}
