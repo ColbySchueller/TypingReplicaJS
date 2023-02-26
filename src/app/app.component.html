@@ -68,9 +68,9 @@
 
   .content {
     display: flex;
-    margin: 82px auto 32px;
+    margin: 15% auto 32px;
     padding: 0 16px;
-    max-width: 960px;
+    max-width: 800px;
     flex-direction: column;
     align-items: center;
 
@@ -202,7 +202,7 @@
   }
 
   .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
@@ -246,16 +246,16 @@
     align-items: center;
     font-size: 12px;
     padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
+    border: 1px solid rgba(27, 31, 35, .2);
     border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
     margin-left: 4px;
     font-weight: 600;
   }
 
   .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, .35);
     background-position: -.5em;
   }
 
@@ -275,7 +275,8 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
+
+    .card-container>*:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -302,33 +303,56 @@
     }
   }
 
-  .placeholder-text{
-    color:rgb(163, 163, 163);
+  .placeholder-text {
+    color: rgb(58, 206, 102);
     font-size: 1.4rem;
   }
 </style>
-<p>TypingReplicaJS</p>
+<div class="background-faded">
+  <div class="background-layer"></div>
+  <div class="content-layer">
+    <p>TypingReplicaJS</p>
 
-<div class="content">
-  <div>
-    <input (keyup)="onKey($event)" class="typing-input">
-    <div class="placeholder-div">
-      <div *ngFor="let letter of paragraphInChar">
-        <label>{{letter}}</label>
+    
+    <div class="content">
+      <div>
+        <div>
+          <h1 class="letter" *ngIf="GWPM == null">{{timeLeft}}</h1>
+          <h1 class="letter" *ngIf="GWPM != null">GWPM: {{GWPM}}</h1>
+        </div>
+        <div class="placeholder-div">
+          <div class="typing-input">
+            <input id="typing-input" (keydown)="onKey($event)" autofocus="true" spellcheck="false" autocomplete="off"
+              autocapitalize="false" autocorrect="off" />
+
+            <script>
+              focus();
+              function focus() {
+                document.getElementById('typing-input').focus();
+              }
+            </script>
+
+          </div>
+          <div *ngFor="let letter of paragraphInChar; let i = index ">
+            <label [id]="i"
+              [ngClass]="colorArray[i] == 1 ? 'correct'  : (colorArray[i] == -1 ? 'letter' : 'incorrect')">{{letter}}</label>
+          </div>
+        </div>
+        <!--<p class="placeholder-text">{{paragraph}}</p>-->
       </div>
+      <span>{{valuesInString}}</span>
+
+      <button (click)="getMaxParagraphList()" class="btn">Refresh</button>
     </div>
-    <!--<p class="placeholder-text">{{paragraph}}</p>-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+    <!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+    <router-outlet></router-outlet>
   </div>
-  <p>{{values}}</p>
 
-  <button (click)="getMaxParagraphList()" class="btn">Refresh</button>
 </div>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet></router-outlet>

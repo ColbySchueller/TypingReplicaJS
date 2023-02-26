@@ -1,5 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
 body{
-  background-color: #24292e;
+  margin: 0;
+  padding: 0;
+
+
 }
+.background-faded{
+  background-color: rgba(0, 0, 0, 0.082);
+  //background-image: url('https://4kwallpapers.com/images/wallpapers/abstract-background-3840x2160-10239.png');
+  background-color: #24292e;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 1
+}
+.background-layer{
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: rgba(0, 0, 0, 0.1);
+
+}
+.content-layer{}
